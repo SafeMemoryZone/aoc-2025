@@ -1,18 +1,4 @@
 def part1(id_ranges):
-    def is_repeated_twice(num):
-        num_str = str(num)
-
-        if len(num_str) % 2 != 0:
-            return False
-
-        half_length = len(num_str) // 2
-
-        for i in range(half_length):
-            if num_str[i] != num_str[i + half_length]:
-                return False
-
-        return True
-
     invalid_id_sum = 0
 
     for id_range in id_ranges:
@@ -20,7 +6,15 @@ def part1(id_ranges):
         to_range = int(id_range.split("-")[1])
 
         for i in range(from_range, to_range + 1):
-            if is_repeated_twice(i):
+            num_str = str(i)
+
+            if len(num_str) % 2 != 0:
+                continue
+
+            part1 = num_str[: len(num_str) // 2]
+            part2 = num_str[len(num_str) // 2 :]
+
+            if part1 == part2:
                 invalid_id_sum += i
 
     print(f"part 1: {invalid_id_sum}")
@@ -67,8 +61,9 @@ def part2(id_ranges):
     print(f"part 2: {invalid_id_sum}")
 
 
-with open("inp", "r") as f:
-    id_ranges = f.read().split(",")
+if __name__ == "__main__":
+    with open("inp", "r") as f:
+        id_ranges = f.read().split(",")
 
-    part1(id_ranges)
-    part2(id_ranges)
+        part1(id_ranges)
+        part2(id_ranges)

@@ -36,7 +36,9 @@ def part2(instructions):
     print(f"part 2: {zero_count}")
 
 
-with open("inp", "r") as f:
-    instructions = f.read().split()
-    part1(instructions)
-    part2(instructions)
+if __name__ == "__main__":
+    with open("inp", "r") as f:
+        instructions = f.read().split()
+
+        part1(instructions)
+        part2(instructions)
